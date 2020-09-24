@@ -1,11 +1,18 @@
 <template>
   <div>
-      <h1>Hola soy ventas</h1>
+     <b-table striped hover :items="historialDeVentas" ></b-table>
+      
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
+  name: "Ventas",
+  computed: {
+    ...mapState(['historialDeVentas']),
+  },
 
 }
 </script>

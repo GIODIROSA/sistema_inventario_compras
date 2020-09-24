@@ -25,11 +25,7 @@ const routes = [
     name: 'Inventario',
     component: () => import(/* webpackChunkName: "inventario" */ '../views/Inventario.vue')
   },
-  {
-    path: '/total',
-    name: 'Total',
-    component: () => import(/* webpackChunkName: "total" */ '../views/Total.vue')
-  }
+  
 ]
 
 const router = new VueRouter({

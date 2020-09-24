@@ -1,7 +1,7 @@
 <template>
   <div>
       <h1>hola soy Inventario</h1>
-     <b-table striped hover :items="juegos" :fields="fields"></b-table>
+     <b-table striped hover :items="juegos"></b-table>
   </div>
 </template>
 
@@ -11,7 +11,7 @@ export default {
   name: "Inventario",
   data() {
     return {
-      fields: ['id', 'nombre', 'stock', 'precio', 'color']
+      fields: ['id', 'nombre', 'stock', 'precio']
     }
   },
   computed: {
