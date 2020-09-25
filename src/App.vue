@@ -1,13 +1,14 @@
 <template>
   <div id="app">
     <div id="nav">
+      <!-- rutas -->
       <router-link class="menu"  to="/">Inicio</router-link> 
       <router-link class="menu" :to="{name: 'Busqueda'}">Busqueda</router-link> 
       <router-link class="menu" :to="{name: 'Ventas'}">Ventas</router-link> 
       <router-link class="menu" :to="{name: 'Inventario'}">Inventario</router-link> 
     </div>
     <router-view/>
-   
+   <!-- footer -->
    <Footer />
    
   </div>

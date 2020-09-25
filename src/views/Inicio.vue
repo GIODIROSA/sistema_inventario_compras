@@ -51,7 +51,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState} from "vuex";
 export default {
   name: "Inicio",
   data() {
@@ -60,6 +60,7 @@ export default {
     };
   },
   methods: {
+    // buscar cambiar a helper
     Descontar() {
       this.$store.dispatch("descontar", this.id);
     },

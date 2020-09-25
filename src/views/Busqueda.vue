@@ -3,10 +3,12 @@
     <div class="bannerBusqueda">
       <h1 class="titleBusqueda">Búsqueda de producto Disponible</h1>
     </div>
+    <!-- input que carga la data -->
     <input class="inputBusqueda" type="text" v-model="producto" />
-    <b-list-group v-if="check" >
+    <!-- listado resultado de la busqueda -->
+    <b-list-group v-if="check">
       <b-list-group-item
-      class="listadoBusqueda container my-2 py-2"
+        class="listadoBusqueda container my-2 py-2"
         v-for="(producto, clave) in productoDisponiblePorId"
         :key="clave"
         ><label
@@ -27,9 +29,11 @@ export default {
     };
   },
   computed: {
+    //metodo que captura el valor del input para ser utilizado en el store en getters
     productoDisponiblePorId() {
       return this.$store.getters.productoDisponiblePorId(this.producto);
     },
+    //reset del input
     check() {
       return this.productoDisponiblePorId.length > 0 && this.producto !== "";
     },

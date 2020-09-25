@@ -46,11 +46,13 @@ export default new Vuex.Store({
     historialDeVentas: [],
   },
   getters: {
+    // filtra el elemento de los productos disponible con stock
     productosConStock: (state) => {
       return state.juegos.filter((producto) => {
         return producto.stock > 0;
       });
     },
+    // filtra el producto ingresado en el input de busqueda e incluye el nombre de objeto juegos
     productoDisponiblePorId: (state, getters) => (producto) => {
       return getters.productosConStock.filter(
         (p) => p.id == producto || p.nombre.includes(producto)
@@ -58,6 +60,8 @@ export default new Vuex.Store({
     },
   },
   mutations: {
+    // transformar el id del evento btn y mutarlo
+    //recepcionar el elemento iterado, se guarda en un array vacio en el state (historialdeVenta)
     DESCONTAR(state, payload) {
       state.juegos = state.juegos.map((e) => {
         if (e.id == payload.trim()) {
@@ -69,6 +73,7 @@ export default new Vuex.Store({
     },
   },
   actions: {
+    // recepción del id cargado por el evento btn
     descontar({ commit }, payload) {
       commit("DESCONTAR", payload);
     },
