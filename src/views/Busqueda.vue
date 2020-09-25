@@ -1,19 +1,24 @@
 <template>
   <div>
-    <h1>Búsqueda de producto Disponible</h1>
-    <input type="text" v-model="producto" />
-    <ul v-if="check">
-      <li v-for="(producto, clave) in productoDisponiblePorId" :key="clave">
-        <label>nombre: {{producto.nombre}} | stock: {{producto.stock}} | precio: ${{producto.precio}}</label>
-      </li>
-    </ul>
-   
+    <div class="bannerBusqueda">
+      <h1 class="titleBusqueda">Búsqueda de producto Disponible</h1>
+    </div>
+    <input class="inputBusqueda" type="text" v-model="producto" />
+    <b-list-group v-if="check" >
+      <b-list-group-item
+      class="listadoBusqueda container my-2 py-2"
+        v-for="(producto, clave) in productoDisponiblePorId"
+        :key="clave"
+        ><label
+          >nombre: {{ producto.nombre }} | stock: {{ producto.stock }} | precio:
+          ${{ producto.precio }}</label
+        ></b-list-group-item
+      >
+    </b-list-group>
   </div>
 </template>
 
 <script>
-
-
 export default {
   name: "Busqueda",
   data() {
@@ -25,11 +30,39 @@ export default {
     productoDisponiblePorId() {
       return this.$store.getters.productoDisponiblePorId(this.producto);
     },
-    check(){
-      return this.productoDisponiblePorId.length > 0 && this.producto !== '';
-    }
+    check() {
+      return this.productoDisponiblePorId.length > 0 && this.producto !== "";
+    },
   },
 };
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+.inputBusqueda {
+  margin: 50px;
+  padding: 10px;
+  border-radius: 10px;
+}
+.bannerBusqueda {
+  background: url("../assets/fondobusqueda.jpg");
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  height: 550px;
+  filter: grayscale(85%);
+}
+.titleBusqueda {
+  display: block;
+  margin: auto;
+  padding: 150px;
+  font-weight: 600;
+  font-size: 100px;
+  color: white;
+}
+.listadoBusqueda {
+  text-align: left;
+  list-style: none;
+  font-size: 20px;
+}
+</style>
