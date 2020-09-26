@@ -13,12 +13,23 @@
       </h1>
       <hr />
       <!-- codigo -->
-      <label class="etiqueta">Codigo:</label>
-      <b-form-input
+      <!-- version ingreso con select -->
+      <label class="etiqueta">Seleccione un Juego:</label>
+      <select v-model="nombre" class="selectorJuego">
+        <option disabled selected>Seleccione el titulo</option>
+        <option
+          v-for="(juego, clave) in juegos"
+          :key="clave"
+          :value="juego.nombre"
+          >{{ juego.nombre }}</option
+        >
+      </select>
+      <!-- version input ingresar id -->
+      <!-- <b-form-input
         id="input-compra"
         v-model="id"
         placeholder="Codigo"
-      ></b-form-input>
+      ></b-form-input> -->
       <!-- nomnbre -->
       <label class="etiqueta">Nombre:</label>
       <b-form-input
@@ -51,20 +62,22 @@
 </template>
 
 <script>
-import { mapState, mapActions} from "vuex";
+import { mapState, mapActions } from "vuex";
 export default {
   name: "Inicio",
   data() {
     return {
-      id: "",
+      id: "", //estado de id del input
+      nombre: "", //estado de select por nombre
     };
   },
   methods: {
     // version 01
     ...mapActions(["descontar"]),
-    Descontar(){
-      this.descontar(this.id)
-    }
+    Descontar() {
+      // this.descontar(this.id)//le puedo pasar nombre a la mutations, solo un parametro
+      this.descontar(this.nombre);
+    },
     // version 02
     // Descontar() {
     //   this.$store.dispatch("descontar", this.id);
@@ -78,7 +91,7 @@ export default {
         precio: "",
         stock: "",
       };
-      return this.juegos.find((j) => j.id == this.id) || juego;
+      return this.juegos.find((j) => j.nombre == this.nombre) || juego;
     },
   }, //final de computed
 };
@@ -96,6 +109,7 @@ export default {
   width: 100%;
   filter: grayscale(85%);
 }
+
 .titleApp {
   padding: 0px 100px;
   font-size: 100px;
@@ -121,6 +135,11 @@ export default {
 #input-compra {
   // padding: 0 100px;
   margin: 0px 100px;
+}
+.selectorJuego {
+  padding: 10px 152px;
+  border: 0;
+  border-radius: 5px;
 }
 .btnComprar {
   text-align: center;

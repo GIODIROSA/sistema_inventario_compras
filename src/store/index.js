@@ -63,8 +63,9 @@ export default new Vuex.Store({
     // transformar el id del evento btn y mutarlo
     //recepcionar el elemento iterado, se guarda en un array vacio en el state (historialdeVenta)
     DESCONTAR(state, payload) {
+      console.log(payload);
       state.juegos = state.juegos.map((e) => {
-        if (e.id == payload.trim()) {
+        if (e.nombre == payload.trim()) {
           e.stock--;
           state.historialDeVentas.push(e);
         }
